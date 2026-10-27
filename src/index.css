@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gov-cream text-gov-navy font-sans antialiased text-[18px] leading-relaxed dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    @apply font-serif text-gov-navy dark:text-slate-100 tracking-tight;
+  }
+
+  /* Visible focus ring for WCAG compliance */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-gov-gold ring-offset-2 dark:ring-offset-slate-900;
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Gov Portal Card */
+  .gov-card {
+    @apply bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-card shadow-card transition-shadow duration-200;
+  }
+
+  /* Gov Section Heading with gold underline */
+  .gov-section-title {
+    @apply font-serif text-[22px] font-bold text-gov-navy dark:text-slate-100 relative inline-block mb-3;
+  }
+  .gov-section-title::after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 3px;
+    background-color: #B8892B;
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+
+  /* Accessible Touch Target */
+  .touch-target {
+    min-height: 56px;
+    min-width: 56px;
+  }
+
+  /* Zebra table striping */
+  .gov-table tbody tr:nth-child(even) {
+    @apply bg-slate-50/60 dark:bg-slate-800/40;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 1.25rem);
+  }
+}
